@@ -18,13 +18,14 @@ public class App {
 
     get("/results", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      int length = Integer.parseInt(request.queryParams("length"));
+      int width = Integer.parseInt(request.queryParams("width"));
+
+      Rectangle myRectangle = new Rectangle(length, width);
+      model.put("myRectangle", myRectangle);
+
       model.put("template", "templates/results.vtl");
-
-      //Variables that you'd like to call on each page go here
-
       return new ModelAndView(model, layout);
-
-
     }, new VelocityTemplateEngine());
   }
 
